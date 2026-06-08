@@ -37,7 +37,7 @@ class ProjectOrchestrator:
     
     def print_separator(self):
         """Print visual separator"""
-        print("\n" + "🚀 " * 25 + "\n")
+        print("\n" + "-" * 50 + "\n")
     
     def run_phase_1_etl(self) -> bool:
         """Execute Phase 1: Data Synthesis & ETL Pipeline"""
@@ -131,7 +131,7 @@ class ProjectOrchestrator:
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(LOOKER_STUDIO_DASHBOARD_BLUEPRINT)
             
-            logger_etl.info(f"✓ Dashboard blueprint generated and saved to {output_file}")
+            logger_etl.info(f"Dashboard blueprint generated and saved to {output_file}")
             
             self.phase_results['phase_4'] = {
                 'status': 'SUCCESS',
@@ -162,9 +162,9 @@ class ProjectOrchestrator:
         for phase_name, phase_result in self.phase_results.items():
             status = phase_result['status']
             description = phase_result.get('description', '')
-            status_symbol = '✓' if status == 'SUCCESS' else '✗'
+            status_text = '[OK]' if status == 'SUCCESS' else '[FAIL]'
             
-            print(f"{status_symbol} {phase_name.upper()}: {status}")
+            print(f"{status_text} {phase_name.upper()}: {status}")
             print(f"  Description: {description}")
             
             if status != 'SUCCESS':
@@ -182,7 +182,7 @@ class ProjectOrchestrator:
         
         print("-" * 80)
         print(f"Total Execution Time: {elapsed_time:.2f} seconds ({elapsed_time/60:.2f} minutes)")
-        print(f"Overall Status: {'✓ ALL PHASES COMPLETED' if all_success else '✗ SOME PHASES FAILED'}")
+        print(f"Overall Status: {'ALL PHASES COMPLETED' if all_success else 'SOME PHASES FAILED'}")
         print("=" * 80)
     
     def run_full_pipeline(self, run_phases: list = None):
@@ -191,18 +191,18 @@ class ProjectOrchestrator:
         
         Args:
             run_phases: List of phases to run (default: all)
-                       e.g., [1, 2, 3, 4] or [1, 3] to skip phase 2
+                        e.g., [1, 2, 3, 4] or [1, 3] to skip phase 2
         """
         if run_phases is None:
             run_phases = [1, 2, 3, 4]
         
         self.print_separator()
-        self.print_header("🎯 SALES DEMAND FORECASTING & BI DASHBOARD PROJECT", level=1)
-        print("\n📋 EXECUTION PLAN:")
-        print(f"  - Phase 1 (ETL): {'✓' if 1 in run_phases else '✗'} Data Synthesis & BigQuery Pipeline")
-        print(f"  - Phase 2 (ML): {'✓' if 2 in run_phases else '✗'} Customer Segmentation (K-Means)")
-        print(f"  - Phase 3 (TS): {'✓' if 3 in run_phases else '✗'} Demand Forecasting (Prophet & ARIMA)")
-        print(f"  - Phase 4 (BI): {'✓' if 4 in run_phases else '✗'} Looker Studio Dashboard")
+        self.print_header("SALES DEMAND FORECASTING & BI DASHBOARD PROJECT", level=1)
+        print("\nEXECUTION PLAN:")
+        print(f"  - Phase 1 (ETL): {'[X]' if 1 in run_phases else '[ ]'} Data Synthesis & BigQuery Pipeline")
+        print(f"  - Phase 2 (ML): {'[X]' if 2 in run_phases else '[ ]'} Customer Segmentation (K-Means)")
+        print(f"  - Phase 3 (TS): {'[X]' if 3 in run_phases else '[ ]'} Demand Forecasting (Prophet & ARIMA)")
+        print(f"  - Phase 4 (BI): {'[X]' if 4 in run_phases else '[ ]'} Looker Studio Dashboard")
         self.print_separator()
         
         self.start_time = time.time()
@@ -210,23 +210,22 @@ class ProjectOrchestrator:
         # Phase 1: Data Synthesis & ETL
         if 1 in run_phases:
             if not self.run_phase_1_etl():
-                print("⚠️  Phase 1 failed. Subsequent phases may not work correctly.")
-                # Continue anyway, as later phases might use existing data
+                print("WARNING: Phase 1 failed. Subsequent phases may not work correctly.")
         
         # Phase 2: Customer Segmentation
         if 2 in run_phases:
             if not self.run_phase_2_segmentation():
-                print("⚠️  Phase 2 failed. Phase 3+ will proceed with existing data.")
+                print("WARNING: Phase 2 failed. Phase 3+ will proceed with existing data.")
         
         # Phase 3: Forecasting
         if 3 in run_phases:
             if not self.run_phase_3_forecasting():
-                print("⚠️  Phase 3 failed.")
+                print("WARNING: Phase 3 failed.")
         
         # Phase 4: Dashboard Blueprint
         if 4 in run_phases:
             if not self.run_phase_4_dashboard():
-                print("⚠️  Phase 4 failed.")
+                print("WARNING: Phase 4 failed.")
         
         elapsed_time = time.time() - self.start_time
         
@@ -238,41 +237,41 @@ class ProjectOrchestrator:
     
     def print_next_steps(self):
         """Print recommended next steps"""
-        print("\n📝 NEXT STEPS:")
+        print("\nNEXT STEPS:")
         print("""
 1. BigQuery Setup:
-   ✓ Verify all tables created successfully in BigQuery
-   ✓ Check data quality and record counts
+   - Verify all tables created successfully in BigQuery
+   - Check data quality and record counts
 
 2. Dashboard Creation (Looker Studio):
-   ✓ Review the generated blueprint in output/Looker_Studio_Complete_Blueprint.md
-   ✓ Follow step-by-step implementation checklist
-   ✓ Connect BigQuery datasets to Looker Studio
-   ✓ Build tabs 1-3 following the detailed specifications
+   - Review the generated blueprint in output/Looker_Studio_Complete_Blueprint.md
+   - Follow step-by-step implementation checklist
+   - Connect BigQuery datasets to Looker Studio
+   - Build tabs 1-3 following the detailed specifications
 
 3. Model Validation:
-   ✓ Review forecast accuracy metrics (target: 87%)
-   ✓ If accuracy is below target, consider:
+   - Review forecast accuracy metrics (target: 87%)
+   - If accuracy is below target, consider:
      - Adjusting hyperparameters (seasonality, trend change points)
      - Using ensemble methods combining Prophet and ARIMA
      - Collecting more historical data
 
 4. Customer Segmentation Review:
-   ✓ Analyze cluster profiles in the customer_segments table
-   ✓ Validate that segments are business-meaningful
-   ✓ Consider adjusting K (number of clusters) if needed
+   - Analyze cluster profiles in the customer_segments table
+   - Validate that segments are business-meaningful
+   - Consider adjusting K (number of clusters) if needed
 
 5. Operational Automation:
-   ✓ Set up BigQuery scheduled queries for daily refreshes
-   ✓ Configure alerts for forecast accuracy drops
-   ✓ Set up email notifications for dashboard updates
+   - Set up BigQuery scheduled queries for daily refreshes
+   - Configure alerts for forecast accuracy drops
+   - Set up email notifications for dashboard updates
 
 6. Optimization:
-   ✓ Create materialized views for frequently used aggregations
-   ✓ Implement incremental data loading for large datasets
-   ✓ Monitor BigQuery costs and optimize queries
+   - Create materialized views for frequently used aggregations
+   - Implement incremental data loading for large datasets
+   - Monitor BigQuery costs and optimize queries
 
-📧 For questions or issues:
+Support Contacts:
    - Check logs in: logs/
    - Review output samples in: output/
    - Consult project README.md for troubleshooting
@@ -290,7 +289,6 @@ def main():
     run_phases = [1, 2, 3, 4]  # Default: run all phases
     
     if len(sys.argv) > 1:
-        # Example: python main.py 1 3 (run phases 1 and 3 only)
         try:
             run_phases = [int(p) for p in sys.argv[1:] if p.isdigit()]
             if not run_phases:
