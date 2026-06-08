@@ -24,7 +24,7 @@ for directory in [LOGS_DIR, OUTPUT_DIR]:
 # BIGQUERY CONFIGURATION
 # ============================================================================
 # Set these values based on your GCP project
-GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID", "your-project-id")
+GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID", "sales-demand-forecasting-BI-intelligence")
 GCP_DATASET_ID = os.getenv("GCP_DATASET_ID", "sales_forecasting_db")
 BIGQUERY_REGION = "US"  # Change if needed for your region
 

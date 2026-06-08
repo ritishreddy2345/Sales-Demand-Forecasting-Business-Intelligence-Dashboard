@@ -1,68 +1,24 @@
-"""
-Google Cloud BigQuery and Dependencies
-Python Package Requirements - Sales Demand Forecasting Project
-"""
-
-# ============================================================================
 # CLOUD & DATA WAREHOUSE
-# ============================================================================
 google-cloud-bigquery==3.13.0
 google-cloud-bigquery-ml==0.22.0
 google-auth==2.25.2
 
-# ============================================================================
 # DATA PROCESSING & ANALYSIS
-# ============================================================================
 pandas==2.1.3
 numpy==1.26.2
 
-# ============================================================================
 # TIME-SERIES FORECASTING
-# ============================================================================
-fbprophet==0.7.10  # Facebook Prophet (pystan dependency may require MS C++ Build Tools on Windows)
-statsmodels==0.14.0  # ARIMA and statistical models
-scikit-learn==1.3.2  # For ML utilities
+fbprophet==0.7.10
+statsmodels==0.14.0
+scikit-learn==1.3.2
 
-# ============================================================================
 # EVALUATION METRICS
-# ============================================================================
-scipy==1.11.4  # Scientific computing
+scipy==1.11.4
 
-# ============================================================================
 # LOGGING & UTILITIES
-# ============================================================================
-python-dotenv==1.0.0  # Environment variable management
+python-dotenv==1.0.0
 
-# ============================================================================
-# OPTIONAL: For advanced visualization and testing
-# ============================================================================
-# matplotlib==3.8.2  # If you want local plotting
-# plotly==5.18.0     # Interactive visualizations
-# pytest==7.4.3      # Unit testing
-
-# ============================================================================
-# NOTES FOR INSTALLATION
-# ============================================================================
-# 1. Create a Python virtual environment first:
-#    python -m venv venv
-#    # Windows:
-#    venv\Scripts\activate
-#    # macOS/Linux:
-#    source venv/bin/activate
-#
-# 2. Install dependencies:
-#    pip install -r requirements.txt
-#
-# 3. GCP Authentication:
-#    - Set up service account JSON key
-#    - Set environment variable: GOOGLE_APPLICATION_CREDENTIALS=path/to/key.json
-#    - Or authenticate via: gcloud auth application-default login
-#
-# 4. For Prophet on Windows (optional):
-#    - You may need to install Microsoft C++ Build Tools
-#    - Or use conda instead: conda install -c conda-forge fbprophet
-#
-# 5. Verify installation:
-#    python -c "import google.cloud.bigquery; print('BigQuery OK')"
-#    python -c "import prophet; print('Prophet OK')"
-#    python -c "import statsmodels; print('Statsmodels OK')"
+# OPTIONAL
+matplotlib==3.8.2
+plotly==5.18.0
+pytest==7.4.3
