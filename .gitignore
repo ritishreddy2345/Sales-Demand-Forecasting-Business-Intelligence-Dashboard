@@ -1,76 +1,29 @@
-# Git Ignore for Sales Forecasting Project
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual Environments
+# Virtual Environment
 venv/
-env/
-ENV/
-env.bak/
-venv.bak/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.swn
-*~
-.DS_Store
+# Python Cache
+__pycache__/
+*.pyc
 
-# GCP & Credentials
-*.json
-!package.json
+# Environment Variables
 .env
-.env.local
-.env.*.local
-service-account-key.json
 
 # Logs
-logs/*.log
+logs/
 *.log
 
-# Data & Cache
-*.csv
-*.xlsx
-*.parquet
-.cache/
-*.pkl
-*.pickle
+# Generated Output Files
+output/
 
-# Jupyter Notebooks (if any)
-.ipynb_checkpoints/
-*.ipynb
+# VS Code
+.vscode/
 
-# OS
-Thumbs.db
+# IDE Files
+.idea/
+
+# System Files
 .DS_Store
 
-# Project specific
-output/*.csv
-output/*.md
-output/*.txt
-!output/.gitkeep
+# Model Files
+*.pkl
+*.joblib
