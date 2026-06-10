@@ -13,3 +13,5 @@ google-cloud-bigquery==3.13.0
 google-auth==2.25.2
 pyarrow
 db-dtypes
+
+streamlit
