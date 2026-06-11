@@ -2,6 +2,12 @@
 
 A Python-based data analytics project that generates synthetic retail transaction data, performs customer segmentation, creates demand forecasts, and produces dashboard-ready output files.
 
+## Live Dashboard
+
+🔗 Looker Studio Dashboard:
+https://datastudio.google.com/reporting/854d373f-da4e-4cb3-aeed-d685dcf06e50
+
+
 ## Tech Stack
 
 - Python
